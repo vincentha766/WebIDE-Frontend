@@ -1,6 +1,9 @@
 /* @flow weak */
 import { createAction } from 'redux-actions'
 
+export const DND_GET_DROPPABLES = 'DND_GET_DROPPABLES'
+export const getDroppables = createAction(DND_GET_DROPPABLES)
+
 export const DND_DRAG_START = 'DND_DRAG_START'
 export const dragStart = createAction(DND_DRAG_START,
   ({sourceType, sourceId}) => ({sourceType, sourceId})

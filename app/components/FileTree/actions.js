@@ -24,7 +24,7 @@ export function openNode (node, shouldBeFolded = null, deep = false) {
   return (dispatch, getState) => {
     if (node.isDir) {
       if (node.shouldBeUpdated) {
-        api.fetchPath(node.path)
+        return api.fetchPath(node.path)
           .then(data => dispatch(loadNodeData(data, node)))
           .then(() => dispatch(toggleNodeFold(node, shouldBeFolded, deep)))
       } else {
@@ -67,6 +67,8 @@ export function initializeFileTree () {
 }
 
 export const uploadFilesToPath = (files, path) => {
+  console.log(`path: ${path}`)
+  console.log(files)
   return (dispatch, getState) => {
     if (!files.length) return
     _(files).forEach(file => {

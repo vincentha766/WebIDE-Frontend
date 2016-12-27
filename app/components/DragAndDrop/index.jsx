@@ -1,19 +1,22 @@
 /* @flow weak */
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import _ from 'lodash'
-import { updateDragOverTarget, updateDragOverMeta, dragEnd } from './actions'
+import {updateDragOverTarget, updateDragOverMeta, dragEnd, getDroppables} from './actions'
 import * as PaneActions from '../Pane/actions'
 import * as TabActions from '../Tab/actions'
+import * as FileTreeActions from '../FileTree/actions';
 
-@connect(state => state.DragAndDrop)
+
+
+@connect(state => ({...state.DragAndDrop, findNodeByPath: state.FileTreeState.findNodeByPath}))
 class DragAndDrop extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  render () {
+  render() {
     const {isDragging, meta, target} = this.props
     if (!isDragging) return null
 
@@ -34,19 +37,25 @@ class DragAndDrop extends Component {
       : null
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.ondragover = this.onDragOver
     window.ondrop = this.onDrop
     window.ondragend = this.onDragEnd
   }
 
-  onDragOver = (e) => {
+  onDragOver = async (e) => {
     e.preventDefault()
-    const {source, droppables, dispatch, meta} = this.props
+    const {source, droppables, dispatch, meta, findNodeByPath} = this.props
     const prevTarget = this.props.target
 
     const [oX, oY] = [e.pageX, e.pageY]
-    const target = droppables.reduce((result, droppable) => {
+
+    if (!droppables) {
+      dispatch(getDroppables())
+      return
+    }
+
+    const target = droppables ? droppables.reduce((result, droppable) => {
       const {top, left, right, bottom} = droppable.rect
       if (left <= oX && oX <= right && top <= oY && oY <= bottom) {
         if (!result) return droppable
@@ -54,7 +63,7 @@ class DragAndDrop extends Component {
       } else {
         return result
       }
-    }, null)
+    }, null) : null;
 
     if (!target) return
     if (!prevTarget || target.id !== prevTarget.id) {
@@ -69,6 +78,13 @@ class DragAndDrop extends Component {
       case 'TAB_on_TABLABEL':
         return this.dragTabOverTabBar(e, target)
 
+      case 'EXTERN_FILE_on_DIR':
+        const node = findNodeByPath(target.id)
+        if (node && node.isFolded) {
+          await dispatch(FileTreeActions.openNode(node, false, false))
+          await dispatch(getDroppables())
+        }
+        return this.dragExternFileOverDir(e, target)
       default:
     }
   }
@@ -93,6 +109,10 @@ class DragAndDrop extends Component {
         dispatch(TabActions.insertTabAt(source.id, target.id.replace('tab_label_', '')))
         break
 
+      case 'EXTERN_FILE_on_DIR':
+        dispatch(FileTreeActions.uploadFilesToPath(e.dataTransfer.files, meta.fileTreeTargetId))
+        break
+
       default:
 
     }
@@ -105,7 +125,12 @@ class DragAndDrop extends Component {
     dispatch(dragEnd())
   }
 
-  dragTabOverTabBar (e, target) {
+  dragExternFileOverDir(e, target) {
+    const {dispatch} = this.props
+    dispatch(updateDragOverMeta({fileTreeTargetId: target.id}))
+  }
+
+  dragTabOverTabBar(e, target) {
     const {dispatch} = this.props
     if (target.type !== 'TABLABEL' && target.type !== 'TABBAR') return
     if (target.type === 'TABLABEL') {
@@ -115,16 +140,16 @@ class DragAndDrop extends Component {
     }
   }
 
-  dragTabOverPane (e, target) {
+  dragTabOverPane(e, target) {
     if (target.type !== 'PANE') return
     const {meta, dispatch} = this.props
     const [oX, oY] = [e.pageX, e.pageY]
 
     const {top, left, right, bottom, height, width} = target.rect
-    const leftRule = left + width/3
-    const rightRule = right - width/3
-    const topRule = top + height/3
-    const bottomRule = bottom - height/3
+    const leftRule = left + width / 3
+    const rightRule = right - width / 3
+    const topRule = top + height / 3
+    const bottomRule = bottom - height / 3
 
     let overlayPos
     if (oX < leftRule) {
@@ -149,15 +174,15 @@ class DragAndDrop extends Component {
         overlay = {
           top: top + heightTabBar,
           left: left,
-          width: width/2,
+          width: width / 2,
           height: height - heightTabBar
         }
         break
       case 'right':
         overlay = {
           top: top + heightTabBar,
-          left: left + width/2,
-          width: width/2,
+          left: left + width / 2,
+          width: width / 2,
           height: height - heightTabBar
         }
         break
@@ -166,15 +191,15 @@ class DragAndDrop extends Component {
           top: top + heightTabBar,
           left: left,
           width: width,
-          height: (height - heightTabBar)/2
+          height: (height - heightTabBar) / 2
         }
         break
       case 'bottom':
         overlay = {
-          top: top + (height + heightTabBar)/2,
+          top: top + (height + heightTabBar) / 2,
           left: left,
           width: width,
-          height: (height - heightTabBar)/2
+          height: (height - heightTabBar) / 2
         }
         break
       default:

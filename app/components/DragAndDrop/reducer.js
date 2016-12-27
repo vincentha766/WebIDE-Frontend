@@ -5,7 +5,8 @@ import {
   DND_DRAG_START,
   DND_DRAG_OVER,
   DND_UPDATE_DRAG_OVER_META,
-  DND_DRAG_END
+  DND_DRAG_END,
+  DND_GET_DROPPABLES
 } from './actions'
 
 function getDroppables () {
@@ -21,6 +22,15 @@ function getDroppables () {
 }
 
 export default handleActions({
+  [DND_GET_DROPPABLES]: (state, action) => {
+    return {
+      ...state,
+      source: {
+        type: 'EXTERN_FILE'
+      },
+      droppables: getDroppables()
+    }
+  },
   [DND_DRAG_START]: (state, action) => {
     const {sourceType, sourceId} = action.payload
     return {

@@ -1,17 +1,17 @@
 /* @flow weak */
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React, {Component, PropTypes} from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import cx from 'classnames'
 import ContextMenu from '../ContextMenu'
 import * as FileTreeActions from './actions'
 import FileTreeContextMenuItems from './contextMenuItems'
 import subscribeToFileChange from './subscribeToFileChange'
 
-const FileUploadInput = ({ node, handleUpload }) => {
+const FileUploadInput = ({node, handleUpload}) => {
   return (
-    <form id='filetree-hidden-input-form' style={{position: 'fixed',top: '-10000px'}}>
+    <form id='filetree-hidden-input-form' style={{position: 'fixed', top: '-10000px'}}>
       <input
         id='filetree-hidden-input'
         type='file'
@@ -24,17 +24,17 @@ const FileUploadInput = ({ node, handleUpload }) => {
 }
 
 class FileTree extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
   state = {
     isContextMenuActive: false,
-    contextMenuPos: { x: 0, y: 0 },
+    contextMenuPos: {x: 0, y: 0},
     contextNode: null
   }
 
-  componentDidMount () {
+  componentDidMount() {
     subscribeToFileChange()
   }
 
@@ -43,7 +43,7 @@ class FileTree extends Component {
     e.preventDefault()
     this.setState({
       isContextMenuActive: true,
-      contextMenuPos: { x: e.clientX, y: e.clientY },
+      contextMenuPos: {x: e.clientX, y: e.clientY},
       contextNode: node
     })
   }
@@ -79,17 +79,22 @@ class FileTree extends Component {
       default:
     }
   }
-  render () {
+
+  render() {
     const {
-      FileTreeState: { rootNode },
-      SettingState: { data: { tabs: { GENERAL: generalSettings } } },
+      FileTreeState: {rootNode},
+      SettingState: {data: {tabs: {GENERAL: generalSettings}}},
       ...actionProps
     } = this.props
-    const { isContextMenuActive, contextMenuPos } = this.state
+    const {isContextMenuActive, contextMenuPos} = this.state
     const HideFilesSetting = generalSettings.items.find(st => st.name === 'Hide Files');
     const HideFilesArray = HideFilesSetting.value.split(',');
     return (
-      <div className="filetree-container" tabIndex={1} onKeyDown={this.onKeyDown}>
+      <div className="filetree-container"
+           tabIndex={1}
+           onKeyDown={this.onKeyDown}
+           data-droppable='DIR'
+      >
         <FileTreeNode
           node={{
             ...rootNode,
@@ -102,10 +107,10 @@ class FileTree extends Component {
           isActive={isContextMenuActive}
           pos={contextMenuPos}
           context={this.state.contextNode}
-          deactivate={()=>this.setState({ isContextMenuActive: false })}
+          deactivate={()=>this.setState({isContextMenuActive: false})}
         />
         <FileUploadInput node={this.state.contextNode}
-          handleUpload={this.props.uploadFilesToPath} />
+                         handleUpload={this.props.uploadFilesToPath}/>
       </div>
     )
   }
@@ -118,26 +123,52 @@ FileTree = connect(
   }), dispatch => bindActionCreators(FileTreeActions, dispatch)
 )(FileTree)
 
+const FileTreeContainer = ({node, selectNode, onContextMenu, children}) => {
+  return (
+    node.isDir ?
+      <div className="filetree-node-container"
+           id={node.path}
+           onContextMenu={e => {
+             selectNode(node);
+             onContextMenu(e, node)
+           }}
+           data-droppable='DIR'
+      >
+        {children}
+      </div> :
+      <div className="filetree-node-container"
+           id={node.path}
+           onContextMenu={e => {
+             selectNode(node);
+             onContextMenu(e, node)
+           }}
+      >
+        {children}
+      </div>
+  )
+}
+
 
 class FileTreeNode extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  render () {
-    const { node, ...actionProps } = this.props
-    const { openNode, selectNode, onContextMenu } = actionProps
+  render() {
+    const {node, ...actionProps} = this.props
+    const {openNode, selectNode, onContextMenu} = actionProps
     return (
-      <div className="filetree-node-container"
-        onContextMenu={e => { selectNode(node); onContextMenu(e, node) }}
+      <FileTreeContainer node={node}
+                         selectNode={selectNode}
+                         onContextMenu={onContextMenu}
       >
-        <div className={cx('filetree-node', { focus: node.isFocused })}
-          ref={r => this.nodeDOM = r}
-          onDoubleClick={e => openNode(node)}
-          onClick={e => selectNode(node)}
+        <div className={cx('filetree-node', {focus: node.isFocused})}
+             ref={r => this.nodeDOM = r}
+             onDoubleClick={e => openNode(node)}
+             onClick={e => selectNode(node)}
         >
           <span className="filetree-node-arrow"
-            onClick={e => openNode(node, null, e.altKey)}
+                onClick={e => openNode(node, null, e.altKey)}
           >
             <i className={cx({
               'fa fa-angle-right': node.isFolded,
@@ -169,12 +200,11 @@ class FileTreeNode extends Component {
             )}
           </div>
           : null}
-
-      </div>
+      </FileTreeContainer>
     )
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     if (this.props.node.isFocused) {
       this.nodeDOM.scrollIntoViewIfNeeded && this.nodeDOM.scrollIntoViewIfNeeded()
     }
