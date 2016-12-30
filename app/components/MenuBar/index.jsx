@@ -66,7 +66,7 @@ const MenuBarItem = (props) => {
         }}
         onMouseEnter={ e => {if (shouldHoverToggleActive) toggleActive(index)} }
       >
-        {menuBarItem.name}
+        {menuBarItem.name || <img src={menuBarItem.imgUrl}/>}
       </div>
       { isActive?
         <Menu items={menuBarItem.items} className={cx('top-down to-right', {active: isActive})}

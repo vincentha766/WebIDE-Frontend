@@ -180,7 +180,7 @@ class Node {
 
 // =========================
 
-var RootNode = new Node({
+const RootNode = new Node({
   name: config.projectName || '',
   path: '/',
   isDir: true,
@@ -237,6 +237,8 @@ export default handleActions({
 
   [FILETREE_SELECT_NODE]: (state, action) => {
     let {node, multiSelect} = action.payload
+
+    console.log(node);
 
     if (!multiSelect) {
       RootNode.unfocus()

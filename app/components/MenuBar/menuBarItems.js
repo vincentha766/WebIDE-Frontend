@@ -6,6 +6,7 @@ var dividItem = { name: '-' }
 var menuBarItems = [
   {
     name: '',
+    imgUrl: 'app/assets/coding_logo_sm.png',
     className: 'coding-logo',
     items: [
       {
