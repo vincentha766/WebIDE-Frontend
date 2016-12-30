@@ -238,8 +238,6 @@ export default handleActions({
   [FILETREE_SELECT_NODE]: (state, action) => {
     let {node, multiSelect} = action.payload
 
-    console.log(node);
-
     if (!multiSelect) {
       RootNode.unfocus()
       RootNode.forEachDescendant(childNode => childNode.unfocus())

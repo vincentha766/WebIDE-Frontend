@@ -96,10 +96,9 @@ class FileTree extends Component {
            data-droppable='DIR'
       >
         <FileTreeNode
-          node={{
-            ...rootNode,
+          node={Object.assign(rootNode, {
             children: rootNode.children.filter(file => !HideFilesArray.includes(file.path))
-          }}
+          })}
           onContextMenu={this.onContextMenu} {...actionProps}
         />
         <ContextMenu
