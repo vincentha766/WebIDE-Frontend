@@ -1,0 +1,7 @@
+export const CLASSPATH_TYPE = {
+  CPE_LIBRARY: 1,
+  CPE_PROJECT: 2,
+  CPE_SOURCE: 3,
+  CPE_VARIABLE: 4,
+  CPE_CONTAINER: 5,
+}

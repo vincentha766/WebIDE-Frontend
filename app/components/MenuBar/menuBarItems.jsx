@@ -1,4 +1,5 @@
 import store from '../../store.js'
+import ProjectStore from '../Project/store'
 import * as GitActions from '../Git/actions'
 import React from 'react'
 import mapShortcutToItems from './utils'
@@ -66,6 +67,17 @@ const menuBarItems = [
         name: 'Save',
         icon: 'fa fa-floppy-o',
         command: 'file:save'
+      }, dividItem,
+      {
+        name: 'Project Configurations...',
+        icon: 'fa',
+        command: 'project:config'
+      },
+      {
+        name: 'Configure Classpath...',
+        icon: 'fa',
+        command: 'project:config_classpath',
+        checkDisable: checkIsJava
       }
     ]
   }, {
@@ -166,6 +178,10 @@ const isRebasing = ['REBASING', 'REBASING_REBASING',
   'REBASING_MERGE', 'REBASING_INTERACTIVE']
 function checkGitRebasing (state) {
   return isRebasing.indexOf(state.GitState.rebase.state) == -1
+}
+
+function checkIsJava () {
+  return !ProjectStore.getState().isJava
 }
 
 function handleGitOnOpen () {

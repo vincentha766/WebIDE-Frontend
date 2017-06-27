@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { initializeFileTree } from '../components/FileTree/actions'
+import { fetchProjectType } from '../components/Project/actions'
 import PanelsContainer from '../components/Panel'
 import Utilities from './Utilities'
 
@@ -15,6 +16,7 @@ class IDE extends Component {
   }
 
   componentWillMount () {  // initLifecycle_3: IDE specific init
+    fetchProjectType()
     initializeFileTree() // @fixme: this is related to the quirk in filetree state
     this.setState({ isReady: true })
   }

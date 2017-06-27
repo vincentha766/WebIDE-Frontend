@@ -26,6 +26,9 @@ import {
   GitCommitDiffView,
   GitCheckoutView,
   GitCheckoutStashView,
+  ProjectConfigView,
+  ClasspathConfigView,
+  FileSelectorView,
 } from './modals'
 
 let ModalContainer = observer(props => {
@@ -127,6 +130,15 @@ class Modal extends Component {
 
         case 'Settings':
           return <SettingsView {...modalConfig} />
+
+        case 'ProjectConfig':
+          return <ProjectConfigView {...modalConfig} />
+
+        case 'ClasspathConfig':
+          return <ClasspathConfigView {...modalConfig} />
+
+        case 'FileSelectorView':
+          return <FileSelectorView {...modalConfig} />
 
         default:
           return content

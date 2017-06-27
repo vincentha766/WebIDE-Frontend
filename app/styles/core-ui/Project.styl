@@ -1,0 +1,119 @@
+.project-config-container {
+  .form-line {
+    display: flex;
+    .form-control {
+      flex: 1;
+      border-radius: 4px 0px 0px 4px;
+    }
+    .fa-folder-o {
+      padding: 9px;
+      border: 1px solid #ccc;
+      border-radius: 0px 4px 4px 0;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+      transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      border-left: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.classpath-setting {
+  .settings-content-container {
+    overflow: hidden;
+    height: 100%;
+    .domain {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .form-horizontal {
+        flex: 1;
+        overflow: hidden;
+        .form-group {
+          height: 100%;
+        }
+      }
+    }
+  }
+  .form-group {
+    display: flex;
+  }
+  .col-left {
+    float: left;
+    width: 778px;
+    padding-left: 15px;
+    padding-right: 15px;
+    flex: 1;
+    height: 100%;
+  }
+  .col-right {
+    float: left;
+    width: 120px;
+    padding-right: 15px;
+    .btn {
+      width: 100%;
+    }
+  }
+  .lib-list {
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    ul, li {
+      margin: 0;
+      padding: 0;
+    }
+    .lib-folder-item, .lib-source-item {
+      cursor: pointer;
+      padding-bottom: 6px;
+      .fa {
+        padding-right: 4px;
+      }
+    }
+    .lib-source-item .tree-view-arrow {
+      visibility: hidden;
+    }
+    .lib-file-list {
+      padding-top: 2px;
+      padding-left: 20px;
+      .lib-file-item {
+        padding-top: 6px;
+      }
+    }
+    .lib-file-item {
+      white-space: nowrap;
+      .lib-file-path {
+        opacity: .6;
+      }
+      
+    }
+    .lib-source-item, .lib-file-item {
+      .fa-minus-square {
+        color: red;
+        display: none;
+      }
+      &:hover .fa-minus-square {
+        display: inline-block;
+      }
+    }
+    .tree-view-arrow {
+      cursor: pointer;
+      margin-right: 6px;
+      display: inline-block;
+    }
+
+    .tree-view-arrow-placeholder {
+      width: 12px;
+      display: inline-block;
+    }
+
+    /* rotate the triangle to close it */
+    .tree-view-arrow-collapsed {
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
+  }
+}
+  
