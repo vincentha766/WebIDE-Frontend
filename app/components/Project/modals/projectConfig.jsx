@@ -141,7 +141,7 @@ class ProjectConfig extends Component {
                 </div>
               </div>
               <div className='form-group'>
-                <label>Source Folder</label>
+                <label>Library Folder</label>
                 <div className='form-line'>
                   <input className='form-control'
                     type='text'

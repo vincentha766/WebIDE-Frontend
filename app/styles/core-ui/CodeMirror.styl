@@ -1,0 +1,94 @@
+.CodeMirror-hints {
+  z-index: z(codemirror-hint);
+  max-width: 600px;
+  overflow: auto;
+  scrollBar();
+  .CodeMirror-hints-wrap {
+    float: left;
+  }
+  .CodeMirror-hint {
+    margin-bottom: 2px;
+    line-height: 16px;
+    display: flex;
+  }
+  .FQN {
+    color: #ccc;
+  }
+  .hints-icon {
+    color: #3e4042;
+    margin-right: 4px;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    text-align: center;
+    font-style: normal;
+    line-height: 14px;
+  }
+  .hints-icon-class {
+    background-color: #a8d9f5;
+    border: 1px solid #7dbce4;
+  }
+  .hints-icon-interface {
+    background-color: #a6ecab;
+    border: 1px solid #85d58b;
+  }
+  .hints-icon-variable {
+    background-color: #f0c183;
+    border: 1px solid #d99e5a;
+  }
+  .hints-icon-method {
+    background-color: #fdc0b8;
+    border: 1px solid #ef948a;
+  }
+
+  .hints-lock-icon {
+    margin-right: 4px;
+    width: 10px;
+    height: 16px;
+    display: inline-block;
+    text-align: center;
+    font-style: normal;
+    line-height: 18px;
+    &.private {
+      color: #d06052;
+    }
+    &.public {
+      color: #73b678;
+    }
+    &.protected {
+      color: #ccc;
+    }
+  }
+}
+.CodeMirror {
+  .CodeMirror-templates-variable {
+    background: rgba(194, 193, 208, 0.4);
+    border: 1px dotted rgba(211, 208, 235, 1);
+  }
+  .CodeMirror-templates-variable-start {
+
+  }
+  .CodeMirror-templates-variable-end {
+
+  }
+
+  .CodeMirror-word-variable {
+    border-bottom: 1px solid black;
+    cursor: pointer;
+  }
+  .CodeMirror-spotlight-variable {
+    background: rgba(255, 235, 59, 0);
+    animation: markerHide 800ms linear;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes markerHide {
+    0% {
+        background: rgba(255, 235, 59, 1);
+    }
+    100% {
+        background: rgba(255, 235, 59, 0);
+    }
+  }
+}

@@ -20,6 +20,12 @@ const state = observable({
   @computed get isJava () {
     return this.selectedResolve === 'javac' || this.selectedResolve === 'maven'
   },
+  @computed get mavenResolve () {
+    if (this.estimated) {
+      return _.find(this.projectResolve, { type: 'maven' })
+    }
+    return this.projectResolve
+  },
   classpath: [],
   libs: [],
   sources: [],

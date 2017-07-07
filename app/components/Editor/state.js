@@ -38,6 +38,8 @@ class Editor {
     if (!this.file && props.content) {
       this._content = props.content
     }
+    this.spotlight = props.spotlight
+    this.readOnly = props.readOnly
     if (props.cm instanceof CodeMirror) this.cm = props.cm
   }
 }

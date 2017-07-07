@@ -36,8 +36,8 @@ export function writeFile (path, content, base64) {
     url: `/workspaces/${config.spaceKey}/files`,
     data: {
       path,
-      content,
-      base64: base64 || false,
+      content: window.btoa(unescape(encodeURIComponent(content))),
+      base64: base64 || true,
       override: true,
       createParent: true
     }
