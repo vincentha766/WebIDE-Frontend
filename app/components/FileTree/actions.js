@@ -129,3 +129,9 @@ export const uploadFilesToPath = (files, path) => {
     })
   })
 }
+
+export const getLibraries = () => {
+  api.getLibraries().then((res) => {
+    console.log('getLibraries', res)
+  })
+}

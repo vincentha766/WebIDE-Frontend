@@ -27,3 +27,7 @@ export function findDeclaration (fqn, offset) {
 export function getContent (path, root) {
   return request.get(`/ws/${config.spaceKey}/content`, { path, root })
 }
+
+export function getLibraries () {
+  return request.get(`/ws/${config.spaceKey}/libraries`)
+}

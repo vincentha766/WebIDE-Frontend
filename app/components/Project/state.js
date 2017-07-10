@@ -11,16 +11,16 @@ const state = observable({
   ],
   estimated: true,
   selectedResolve: 'blank',
-  @computed get currentResolve () {
+  get currentResolve () {
     if (this.estimated) {
       return _.find(this.projectResolve, { type: this.selectedResolve })
     }
     return this.projectResolve
   },
-  @computed get isJava () {
+  get isJava () {
     return this.selectedResolve === 'javac' || this.selectedResolve === 'maven'
   },
-  @computed get mavenResolve () {
+  get mavenResolve () {
     if (this.estimated) {
       return _.find(this.projectResolve, { type: 'maven' })
     }

@@ -4,6 +4,8 @@ import { TreeNode as FileTreeNode } from 'commons/Tree'
 import subscribeToFileChange from 'commons/File/subscribeToFileChange'
 import * as FileTreeActions from './actions'
 import FileTreeState from './state'
+import ProjectStore from '../Project/store'
+const projectState = ProjectStore.getState()
 
 const FileUploadInput = ({ node, handleUpload }) => (
   <form id='filetree-hidden-input-form' style={{ position: 'fixed', top: '-10000px' }}>
