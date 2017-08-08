@@ -4,7 +4,7 @@ import { isFunction } from 'utils/is'
 import config from '../config'
 import api from '../backendAPI'
 import { stepFactory, i18n } from '../utils'
-import { loadPackagesByType, mountPackagesByType } from '../components/Plugins/actions'
+import { loadPackagesByType, mountPackagesByType, loadPlugin } from 'components/Plugins/actions'
 import CodingSDK from '../CodingSDK'
 import state from './state'
 import pluginUrls from '../../.plugins.json'
@@ -30,13 +30,16 @@ async function initialize () {
     window.extension = f => null
     window.refs = {}
     window.config = config
-    return true
+    return import('plugin/index.js')
+    .then((module) => {
+      loadPlugin(module.default)
+      return true
+    })
   })
 
-  await step('[1] load initialize package', async() => {
-    await loadPackagesByType('init', state)
-    return true
-  })
+  await step('[1] load initialize package', () =>
+    loadPackagesByType('init', state).then(() => true).catch(() => true)
+  )
 
   await step('load step from settings', async() => {
     for (const value of state.values()) {
@@ -48,10 +51,13 @@ async function initialize () {
   })
 
 
-  await step(`[${stepNum++}] load required package`,
-  async () => {
-    await loadPackagesByType('Required')
-    mountPackagesByType('init')
+  await step(`[${stepNum++}] load required package`, async () => {
+    try {
+      await loadPackagesByType('Required')
+      mountPackagesByType('init')
+    } catch (err) {
+      return true
+    }
     return true
   })
 

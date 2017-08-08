@@ -36,6 +36,8 @@ return {
     modules: ['node_modules', path.join(PROJECT_ROOT, 'app')],
     alias: {
       static: path.join(PROJECT_ROOT, 'static'),
+      app: path.join(PROJECT_ROOT, 'app'),
+      lib: path.join(PROJECT_ROOT, 'node_modules'),
     }
   },
   resolveLoader: {
