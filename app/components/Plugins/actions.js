@@ -110,35 +110,40 @@ export const PRELOAD_REQUIRED_EXTENSION = 'PRELOAD_REQUIRED_EXTENSION'
 
 // 插件申明加载时机，
 export const loadPackagesByType = registerAction(PRELOAD_REQUIRED_EXTENSION,
-(type, data = {}) => ({ type, data }),
-({ type, data }) => api.fetchPackageList()
-    .then(list => list
-                  .sort((pgkA, pgkB) => (pgkA.weight || 0) < (pgkB.weight || 0) ? 1 : -1)
-                  .filter(pkg => (pkg.loadType || pkg.requirement) === type)
-    )
-    .then(async (list) => {
-      for (const pkg of list) {
-        await fetchPackage(pkg, type, data)
-      }
-    }))
+  (type, data = {}) => ({ type, data }),
+  ({ type, data }) => {
+    return api.fetchPackageList()
+      .then(list => list
+        .sort((pgkA, pgkB) => (pgkA.weight || 0) < (pgkB.weight || 0) ? 1 : -1)
+        .filter(pkg => (pkg.loadType || pkg.requirement) === type)
+      )
+      .then(async (list) => {
+        for (const pkg of list) {
+          await fetchPackage(pkg.name, pkg.version, type, data)
+        }
+      })
+  }
+)
 
 export const mountPackagesByType = (type) => {
   const plugins = PluginRegistry.findAllByType(type)
   plugins.forEach((plugin) => {
-    plugin.detaultInstance.pluginWillMount(plugin)
+    plugin.detaultInstance.pluginWillMount(config)
   })
 }
 
 export const loadPlugin = (plugin) => {
-  const { Manager = (() => null), key } = plugin
-  const manager = new Manager()
-  plugin.detaultInstance = manager
-  PluginRegistry.set(key, { ...plugin, pkgId: 'inner plugin', info: plugin.info || {} })
-  manager.pluginWillMount(config)
+  const pluginArray = Array.isArray(plugin) ? plugin : [plugin]
+  pluginArray.forEach((plugin) => {
+    const { Manager = (() => null), key } = plugin
+    const manager = new Manager()
+    plugin.detaultInstance = manager
+    PluginRegistry.set(key, { ...plugin, pkgId: 'inner plugin', info: plugin.info || {} })
+    manager.pluginWillMount(config)
+  })
 }
 /**
  * @param  { position label getComponent callback } children // children is the shape of per component
-
  * @param  {} callback // spec per plugin inject func
  */
 
