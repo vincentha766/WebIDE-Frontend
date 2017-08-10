@@ -3,6 +3,5 @@ build
 .idea/
 .vscode/
 .env
-app/config.js
 *.bak
 coverage/
