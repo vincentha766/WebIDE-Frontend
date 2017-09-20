@@ -12,7 +12,6 @@ module.exports = merge(
     staticDir: process.env.RUN_MODE ? 'rs2' : 'rs',
   }),
   stylesheet(),
-  uglify(),
   {
     plugins: [
       new webpack.DefinePlugin({

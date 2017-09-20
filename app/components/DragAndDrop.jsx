@@ -3,7 +3,7 @@ import debounce from 'lodash/debounce'
 import { dispatch } from '../store'
 import mobxStore from '../mobxStore'
 import { observer } from 'mobx-react'
-import { action, runInAction } from 'mobx'
+import { action, runInAction, toJS } from 'mobx'
 import { dnd } from 'utils'
 import * as PaneActions from './Pane/actions'
 import PaneState from './Pane/state'
@@ -34,6 +34,7 @@ class DragAndDrop extends Component {
 
   render () {
     const { isDragging, meta, target } = dnd
+    console.log('dnd', toJS(dnd))
     if (!isDragging) return null
 
     if (meta && meta.paneLayoutOverlay) {
