@@ -240,6 +240,33 @@
     top: 0;
     width: 13px;
   }
+
+  .keyboards {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    background: #DDD;
+    display: none;
+    button {
+      background: #DDD;
+      outline: none;
+      flex: 1;
+      &.active {
+        // background: #666;
+        // box-shadow: inset 0px 0px 4px #ccc;
+        border-style: inset;
+      }
+    }
+  }
+
+  &.showKeyboard {
+    padding-bottom: 28px;
+    .keyboards {
+      display: flex;  
+    }
+  }
 }
 
 @-moz-document url-prefix() {

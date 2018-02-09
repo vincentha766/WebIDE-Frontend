@@ -52,6 +52,7 @@ class TerminalContainer extends Component {
     injectComponent(TERMINAL.ENV, {
       key: 'envController',
     }, () => <div></div>)
+    window.onKeyboard = this.onKeyboard
   }
 
   componentWillUnmount () {
@@ -108,6 +109,10 @@ class TerminalContainer extends Component {
     // } else {
     //   emitter.emit(E.TERM_ENV_HIDE, e)
     // }
+  }
+
+  onKeyboard (height) {
+    console.log('onkeyboard', height)
   }
 }
 
