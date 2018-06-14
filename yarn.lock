@@ -7612,7 +7612,7 @@ vscode-base-languageclient@^0.0.1-alpha.5:
   version "0.0.1-alpha.5"
   resolved "http://registry.npm.taobao.org/vscode-base-languageclient/download/vscode-base-languageclient-0.0.1-alpha.5.tgz#2a908a7bc6fe7d60574c103f669c656354818e7e"
   dependencies:
-    vscode-jsonrpc "^3.2.0"
+    vscode-jsonrpc "3.6.2"
     vscode-languageserver-types "^3.2.0"
     vscode-uri "^1.0.0"
 
@@ -7632,7 +7632,7 @@ vscode-ws-jsonrpc@^0.0.1-alpha.5:
   version "0.0.1-alpha.5"
   resolved "http://registry.npm.taobao.org/vscode-ws-jsonrpc/download/vscode-ws-jsonrpc-0.0.1-alpha.5.tgz#1ca66667940b5b19730a6a1d6150be506a808c61"
   dependencies:
-    vscode-jsonrpc "^3.3.0"
+    vscode-jsonrpc "3.6.2"
 
 vscode@^1.1.18:
   version "1.1.18"
