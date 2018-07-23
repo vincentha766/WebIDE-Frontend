@@ -1,5 +1,6 @@
 import { createConnection } from 'vscode-base-languageclient/lib/connection'
 import { BaseLanguageClient } from 'vscode-base-languageclient/lib/base'
+import { lowerCase } from 'lodash'
 import {
   MonacoToProtocolConverter,
   ProtocolToMonacoConverter,
@@ -11,6 +12,7 @@ import {
 import config from 'config'
 import io from 'socket.io-client'
 import { documentSelectors } from '../utils/languages'
+import javaLspConfiguration from '../utils/java-lsp-configuration'
 
 export function createMonacoServices (editor, options) {
   const m2p = new MonacoToProtocolConverter()
@@ -35,6 +37,14 @@ export function createLanguageClient (services, connection, language) {
         const detail = err instanceof Error ? err.message : ''
       },
       diagnosticCollectionName: language,
+      initializationOptions: {
+        workspaceFolders: [`file://${config._ROOT_URI_}`],
+        settings: { java: javaLspConfiguration },
+        extendedClientCapabilities: {
+          progressReportProvider: true,
+          classFileContentsSupport: true,
+        }
+      },
     },
     services,
     connectionProvider: {
@@ -56,7 +66,8 @@ export function createWebSocket () {
     path: `${serverpath}/javalsp/${config.spaceKey}`,
     transports: ['websocket'],
     query: {
-      ws: config.spaceKey
+      ws: config.spaceKey,
+      language: lowerCase(config.mainLanguage)
     }
   }
   return io.connect(host, socketOptions)
