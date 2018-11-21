@@ -135,7 +135,7 @@ class Workspace extends Component {
                 wsNor = this.handleParse(values[0].data.list);
             } else if (res.code === 401) {
                 window.top.postMessage({ path: '/intro' }, '*');
-                window.location.href = '/intro';
+                window.location.href = '/index';
             } else {
                 notify({ notifyType: NOTIFY_TYPE.ERROR, message: values[0].msg });
             }

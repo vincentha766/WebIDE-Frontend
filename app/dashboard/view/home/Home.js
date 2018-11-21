@@ -129,7 +129,7 @@ class Home extends Component {
                 }
             } else {
                 window.top.postMessage({ path: '/intro' }, '*');
-                window.location.href = '/intro';
+                window.location.href = '/index';
             }
         });
     }
