@@ -50,7 +50,7 @@
     "lastModified": "最后更新于 {{days}} 天前",
     "lastModifiedToday": "最后更新于 今天",
     "deletedDaysAgo": "删除于 {{days}} 天前",
-    "deletedTime": "删除于 {{hours}} 小时 {{minutes}} 分 {{seconds}} 秒前",
+    "deletedTime": "删除于 {{hours}} 小时 {{minutes}} 分钟前",
     "copyed": "复制完成",
     "noDesc": "[暂无描述]",
     "manage": "管理",
@@ -74,5 +74,8 @@
     "period": "。",
     "globalTip1": "系统检测到您的用户名尚未修改。",
     "globalTip2": "请先进入 [ 腾讯云开发者平台 > 个人设置 ] 修改后再重新登录使用。",
-    "gotoModify": "前往修改"
+    "gotoModify": "前往修改",
+    "eventStreamBulletin1": "尊敬的开发者，由于受 ",
+    "eventStreamBulletin2": "[ event-stream 包事件 ]",
+    "eventStreamBulletin3": " 影响，您的插件需要手动删除 `yarn.lock` 文件并重新安装依赖，再推送代码发布新版本或预发布。"
 }
