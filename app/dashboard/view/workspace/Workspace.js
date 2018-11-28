@@ -29,10 +29,10 @@ class Workspace extends Component {
         return (
             <div className="dash-workspace">
                 {showWelcome && <Intro handler={this.handleWelcome} />}
-                <Game />
+                {/* <Game /> */}
                 <div className="card-box">
                     <NewWs />
-                    <NewPlugin />
+                    {/* <NewPlugin /> */}
                 </div>
                 {workspaces.length > 0 && (
                     <div className="created">

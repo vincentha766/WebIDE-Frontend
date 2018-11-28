@@ -51,10 +51,10 @@ class Home extends Component {
                 </div>
                 <div className={`dash-mnav${isMbarOn ? ' on' : ''}`}>
                     <Link className="nav-item" to="/dashboard/workspace" onClick={hideMbar}>{i18n('global.workspace')} ({wsCount})</Link>
-                    <Link className="nav-item" to="/dashboard/plugin" onClick={hideMbar}>{i18n('global.plugin')}</Link>
+                    {/* <Link className="nav-item" to="/dashboard/plugin" onClick={hideMbar}>{i18n('global.plugin')}</Link> */}
                     <Link className="nav-item" to="/dashboard/setting" onClick={hideMbar}>{i18n('global.setting')}</Link>
                     <Link className="nav-item" to="/dashboard/about" onClick={hideMbar}>{i18n('global.about')}</Link>
-                    <a className="nav-item" href="https://dev.tencent.com/" target="_blank" rel="noopener noreferrer" onClick={hideMbar}>{i18n('global.tencentCloudDevPlatform')}</a>
+                    {/* <a className="nav-item" href="https://dev.tencent.com/" target="_blank" rel="noopener noreferrer" onClick={hideMbar}>{i18n('global.tencentCloudDevPlatform')}</a> */}
                     <a className="nav-item" href="https://dev.tencent.com/help/doc/cloud-studio" target="_blank" rel="noopener noreferrer" onClick={hideMbar}>{i18n('global.docs')}</a>
                     <a className="nav-item" href="https://feedback.coding.net/" target="_blank" rel="noopener noreferrer" onClick={hideMbar}>{i18n('global.feedback')}</a>
                 </div>
@@ -65,7 +65,7 @@ class Home extends Component {
                     </div>
                     <div className="nav">
                         <NavLink className="nav-item" activeClassName="active" to="/dashboard/workspace">{i18n('global.workspace')} ({wsCount})</NavLink>
-                        <NavLink className="nav-item" activeClassName="active" to="/dashboard/plugin">{i18n('global.plugin')}</NavLink>
+                        {/* <NavLink className="nav-item" activeClassName="active" to="/dashboard/plugin">{i18n('global.plugin')}</NavLink> */}
                         <NavLink className="nav-item" activeClassName="active" to="/dashboard/setting">{i18n('global.setting')}</NavLink>
                     </div>
                     {!isMaskOn && <Bell on={isBellOn} togglePanel={this.toggleBellPanel} />}
@@ -78,7 +78,7 @@ class Home extends Component {
                             <Switch>
                                 <Route exact path="/dashboard/workspace" component={Workspace}></Route>
                                 <Route exact path="/dashboard/workspace/create" component={Create}></Route>
-                                <Route path="/dashboard/plugin" component={Plugin}></Route>
+                                {/* <Route path="/dashboard/plugin" component={Plugin}></Route> */}
                                 <Route exact path="/dashboard/setting" component={Setting}></Route>
                                 <Route exact path="/dashboard/about" component={About}></Route>
                                 <Redirect to="/dashboard/workspace" />
