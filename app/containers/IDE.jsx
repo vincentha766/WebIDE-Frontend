@@ -45,7 +45,7 @@ class IDE extends Component {
     if (!this.state.isReady) return null
     return (
       <div className='ide-container'>
-        {this.state.isBulletinOn && <Bulletin close={this.closeBulletin} />}
+        {/* {this.state.isBulletinOn && <Bulletin close={this.closeBulletin} />} */}
         <GlobalPrompt />
         <PanelsContainer />
         <Utilities />

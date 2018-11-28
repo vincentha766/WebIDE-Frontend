@@ -41,7 +41,7 @@ class Home extends Component {
         }
         return (
             <div id="dash-container" onClick={this.turnOffPanel}>
-                {isBulletinOn && <Bulletin close={this.closeBulletin} />}
+                {/* {isBulletinOn && <Bulletin close={this.closeBulletin} />} */}
                 <div className="dash-mbar">
                     <div className="logo">
                         <Link to="/dashboard/workspace" onClick={hideMbar}><img src={cloudstudio} alt="logo" /></Link>
