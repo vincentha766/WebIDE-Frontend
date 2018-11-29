@@ -2,12 +2,13 @@ import React from 'react';
 
 import './projectCard.css';
 import i18n from '../../../utils/i18n';
+import config from '../../../../config';
 
 const httpsReg = /http(?:s)?/;
 
 const ProjectCard = ({ iconUrl, ownerName, name, desc, selected, filter, handleSeleteProject }) => {
     const { seletedOwnerName, seletedProjectName } = selected;
-    const src = httpsReg.test(iconUrl) ? iconUrl : `https://coding.net${iconUrl}`;
+    const src = httpsReg.test(iconUrl) ? iconUrl : `${config.codingUrl}${iconUrl}`;
     const projectCardClass = `com-card project-card${(seletedOwnerName === ownerName && seletedProjectName === name) ? ' seleted' : ''}`;
     return (
         <div className={projectCardClass} onClick={() => handleSeleteProject({ ownerName, projectName: name })}>

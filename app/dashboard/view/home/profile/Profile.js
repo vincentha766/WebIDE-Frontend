@@ -15,7 +15,7 @@ class Profile extends Component {
     render() {
         const { user, on, togglePanel } = this.props;
         const { name, avatar } = user;
-        const src = httpReg.test(avatar) ? avatar : `https://coding.net${avatar}`;
+        const src = httpReg.test(avatar) ? avatar : `${config.codingUrl}${avatar}`;
         return (
             <div className={`dash-profile${on ? ' on' : ''}`}>
                 <div className="profile" onClick={togglePanel}>
