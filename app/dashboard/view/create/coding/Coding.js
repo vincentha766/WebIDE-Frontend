@@ -52,7 +52,7 @@ class Coding extends Component {
                         <div className="project-head">
                             <div className="project-head-left">
                                 <div className={`item${type === 1 ? ' active' : ''}`} onClick={() => this.handleType(1)}>{i18n('ws.existingProject')}</div>
-                                <div className={`item${type === 2 ? ' active' : ''}`} onClick={() => this.handleType(2)}>{i18n('ws.templateProject')}</div>
+                                {/* <div className={`item${type === 2 ? ' active' : ''}`} onClick={() => this.handleType(2)}>{i18n('ws.templateProject')}</div> */}
                             </div>
                             {type === 1 && (
                                 <div className="project-head-right">
