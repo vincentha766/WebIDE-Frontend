@@ -103,14 +103,14 @@ class Home extends Component {
                 path: route.pathname,
                 state: route.state,
             }, '*');
-            gtag('config', 'UA-65952334-9', {'page_path': route.pathname});
+            // gtag('config', 'UA-65952334-9', {'page_path': route.pathname});
         });
         const historyState = window.history.state;
         window.top.postMessage({
             path: window.location.pathname,
             state: (historyState && historyState.state) ? historyState.state : undefined,
         }, '*');
-        gtag('config', 'UA-65952334-9', {'page_path': window.location.pathname});
+        // gtag('config', 'UA-65952334-9', {'page_path': window.location.pathname});
         // 缩放页面时，关闭 mbar
         window.addEventListener('resize', () => {
             const { isMbarOn } = this.props;

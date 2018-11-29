@@ -8,6 +8,7 @@ import './profile.css';
 import i18n from '../../../utils/i18n';
 import api from '../../../api';
 import config from '../../../utils/config';
+import gConfig from '../../../../config';
 
 const httpReg = /^http/;
 
@@ -15,7 +16,7 @@ class Profile extends Component {
     render() {
         const { user, on, togglePanel } = this.props;
         const { name, avatar } = user;
-        const src = httpReg.test(avatar) ? avatar : `${config.codingUrl}${avatar}`;
+        const src = httpReg.test(avatar) ? avatar : `${gConfig.codingUrl}${avatar}`;
         return (
             <div className={`dash-profile${on ? ' on' : ''}`}>
                 <div className="profile" onClick={togglePanel}>
