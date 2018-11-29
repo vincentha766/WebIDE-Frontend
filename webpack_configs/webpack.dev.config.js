@@ -143,7 +143,8 @@ const config = merge(
       __PACKAGE_SERVER__: str(process.env.PACKAGE_SERVER || process.env.HTML_BASE_URL || ''),
       __PACKAGE_PORTS__: str(getPluginsPorts),
       __NODE_ENV__: str(process.env.NODE_ENV || ''),
-      __CHANGELOG_PATH__: str('/changelog/')
+      __CHANGELOG_PATH__: str('/changelog/'),
+      __CODING_URL__: str(process.env.CODING_URL || ''),
     }),
     new HardSourceWebpackPlugin()
   ]

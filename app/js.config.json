@@ -25,6 +25,7 @@
         "__BACKEND_URL__": "",
         "__PACKAGE_SERVER__": "",
         "__WS_URL__": "",
+        "__CODING_URL__": "",
         "__RUN_MODE__": "mode"
     }
 }
