@@ -124,12 +124,12 @@ class Home extends Component {
         api.getUserProfile().then(res => {
             this.setState({ loaded: true });
             if (res.code === 0) {
-                if (!/^dtid_[a-z0-9]+/i.test(res.data.global_key)) {
+                // if (!/^dtid_[a-z0-9]+/i.test(res.data.global_key)) {
                     this.props.logIn(res.data);
                     this.setState({ isMaskOn: false });
                     // 获取工作空间数量信息
                     this.fetchWorkspaceCount();
-                }
+                // }
             } else {
                 window.top.postMessage({ path: '/intro' }, '*');
                 window.location.href = '/index';
