@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import config from 'config'
 import api from '../backendAPI'
 import cx from 'classnames'
+import signout from '../utils/signInOut'
 
 class User extends Component {
   constructor (props) {
@@ -76,7 +77,7 @@ class User extends Component {
                 <li>
                   <a href="javascript:void(0)" onClick={(e) => {
                     e.preventDefault()
-                    api.signout()
+                    signout()
                   }}>Logout</a>
                 </li>
               </ul>
@@ -89,31 +90,7 @@ class User extends Component {
   }
 }
 
-// const User = ({ handleSignout, userProfile }) => {
-//   console.log('config', config)
-//   if (handleSignout && userProfile) {
-//     return (
-//       <div className="user">
-//         <div className="user-info">
-//           <a href="https://coding.net/user/account">
-//             <img src={userProfile.avatar} alt={userProfile.name} />
-//           </a>
-//           <div className="dropdown">
-
-//           </div>
-//         </div>
-//       </div>
-//       // <ul className='nav-right'>
-//       //   <a href='javascript:void(0)' onClick={handleSignout}>退出登录</a>
-//       // </ul>
-//     )
-//   }
-//   return (
-//     <div></div>
-//   )
-// }
-
-const Header = ({ handleSignout, userProfile }) => (
+const Header = ({ userProfile }) => (
   <div className='page-header'>
     <a href='/' className='logo'>Cloud Studio</a>
     <ul className='nav'>

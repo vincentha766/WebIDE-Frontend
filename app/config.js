@@ -43,6 +43,8 @@ const config = observable({
   fileicons: 'default',
   tencentOrigin: 'https://studio.dev.tencent.com',
   codingUrl: getCookie('CODING_URL') || __CODING_URL__ || 'https://coding.net',
+  loginUrl: getCookie('LOGIN_URL') || __LOGIN_URL__ || '/signin',
+  logoutUrl: getCookie('LOGOUT_URL') || __LOGOUT_URL__ || '/signout',
   get previewURL () {
     if (config.staticServingToken && config.spaceKey && config.staticServingURL) {
       return config.staticServingURL.replace(

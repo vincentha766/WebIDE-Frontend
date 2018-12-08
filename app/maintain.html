@@ -1423,17 +1423,14 @@
 
     function logout() {
       $.ajax({
-        url: "https://studio.coding.net/backend/logout",
-        type: "GET",
-        contentType: "application/vnd.coding.v2+json",
+        url: __LOGOUT_URL__,
+        type: __LOGOUT_METHOD__,
         xhrFields: {
           withCredentials: true
         },
         crossDomain: true
-      }).fail(function () {
-        window.location = '/signin'
       }).always(function () {
-        window.location = '/signin'
+        window.location = __CODING_URL__
       });
     }
 

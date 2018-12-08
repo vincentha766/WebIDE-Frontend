@@ -30,10 +30,6 @@ export function loginCode ({
   })
 }
 
-export function signout () {
-  return request.get('/logout')
-}
-
 export function getUserProfile () {
   // @fixme: initialize2 requires removing .then(res => res.data)
   return request.get('/user/current', null,

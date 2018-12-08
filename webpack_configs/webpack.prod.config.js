@@ -123,6 +123,9 @@ module.exports = merge(
         __NODE_ENV__: str(process.env.NODE_ENV || ''),
         __CHANGELOG_PATH__: str('/rs2/changelog/'),
         __CODING_URL__: str(process.env.CODING_URL || ''),
+        __LOGIN_URL__: str(process.env.LOGIN_URL || ''),
+        __LOGOUT_URL__: str(process.env.LOGOUT_URL || ''),
+        __LOGOUT_METHOD__: str(process.env.LOGOUT_METHOD || 'POST'),
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV)
         }

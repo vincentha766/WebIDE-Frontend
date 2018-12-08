@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 import './profile.css';
 
 import i18n from '../../../utils/i18n';
-import api from '../../../api';
 import config from '../../../utils/config';
 import gConfig from '../../../../config';
+import signout from '../../../../utils/signInOut'
+import api from 'dashboard/api/index';
 
 const httpReg = /^http/;
 
@@ -36,15 +37,16 @@ class Profile extends Component {
     }
 
     handleLogout = () => {
-        api.logout().then(res => {
-            if (res.code === 0) {
-                this.props.logOut();
-                window.top.postMessage({
-                    state: { type: 'redirect' },
-                    path: `https://cloud.tencent.com/login/quit?s_url=${config.studioOrigin}`,
-                }, '*');
-            }
-        });
+        signout()
+        // api.logout().then(res => {
+        //     if (res.code === 0) {
+        //         this.props.logOut();
+        //         window.top.postMessage({
+        //             state: { type: 'redirect' },
+        //             path: `https://cloud.tencent.com/login/quit?s_url=${config.studioOrigin}`,
+        //         }, '*');
+        //     }
+        // });
     }
 }
 

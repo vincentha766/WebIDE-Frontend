@@ -403,10 +403,7 @@ class Initialize extends Component {
           {requestInfo}
         </div>
         {hintInfo}
-        <Header handleSignout={e => {
-          e.preventDefault()
-          api.signout()
-        }} />
+        <Header />
         <Utilities />
       </div>
     )

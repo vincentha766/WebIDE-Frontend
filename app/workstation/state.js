@@ -132,7 +132,8 @@ const stepCache = observable.map({
           if (res.code === 403) {
             return platformApi.getUserProfile().then((userRes) => {
               if (userRes.code === 1000) {
-                window.location.href = `/login?return_url=${window.location.href}`;
+                // window.location.href = `/login?return_url=${window.location.href}`;
+                window.location.href = __LOGIN_URL__;
               } else if (userRes.code === 0) {
                 return platformApi.fetchRequestState().then((stateRes) => {
                   initializeState.errorCode = res.code;
