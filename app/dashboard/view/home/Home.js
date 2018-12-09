@@ -132,7 +132,7 @@ class Home extends Component {
                 // }
             } else {
                 window.top.postMessage({ path: '/intro' }, '*');
-                window.location.href = '/index';
+                window.location.href = __LOGIN_URL__;
             }
         });
     }
