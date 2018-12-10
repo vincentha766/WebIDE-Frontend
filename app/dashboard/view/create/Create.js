@@ -61,7 +61,7 @@ class Create extends Component {
                 this.setState({ projects: res.data });
             } else if (res.code === 401) {
                 window.top.postMessage({ path: '/intro' }, '*');
-                window.location.href = '/index';
+                window.location.href = __LOGIN_URL__;
             } else {
                 notify({ notifyType: NOTIFY_TYPE.ERROR, message: res.msg });
             }
@@ -76,7 +76,7 @@ class Create extends Component {
                 this.setState({ templates: res.data });
             } else if (res.code === 401) {
                 window.top.postMessage({ path: '/intro' }, '*');
-                window.location.href = '/index';
+                window.location.href = __LOGIN_URL__;
             } else {
                 notify({ notifyType: NOTIFY_TYPE.ERROR, message: res.msg });
             }
@@ -91,7 +91,7 @@ class Create extends Component {
                 this.setState({ envs: res });
             } else if (res.code === 401) {
                 window.top.postMessage({ path: '/intro' }, '*');
-                window.location.href = '/index';
+                window.location.href = __LOGIN_URL__;
             } else {
                 notify({ notifyType: NOTIFY_TYPE.ERROR, message: res.msg });
             }

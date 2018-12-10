@@ -26,7 +26,7 @@ class Home extends Component {
         this.state = {
             loaded: false,
             isBulletinOn: true,
-            isMaskOn: true,
+            isMaskOn: false,
             isBellOn: false,
             isProfileOn: false,
         };
