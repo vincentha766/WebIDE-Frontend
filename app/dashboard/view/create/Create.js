@@ -36,13 +36,13 @@ class Create extends Component {
                             <Radio checked={importFrom === 'git'} />
                             <span>{i18n('ws.otherGitRepo')}</span>
                         </div>
-                        <div className="radio-option" onClick={() => this.handleImportFrom('local')}>
-                            <Radio checked={importFrom === 'local'} />
-                            <span>{i18n('ws.noRemoteRepo')}</span>
-                        </div>
+                        {/* <div className="radio-option" onClick={() => this.handleImportFrom('local')}> */}
+                            {/* <Radio checked={importFrom === 'local'} /> */}
+                            {/* <span>{i18n('ws.noRemoteRepo')}</span> */}
+                        {/* </div> */}
                     </div>
                 </div>
-                {importFrom === 'local' && <Local templates={templates} />}
+                {/* {importFrom === 'local' && <Local templates={templates} />} */}
                 {importFrom === 'coding' && <Coding projects={projects} templates={templates} envs={envs} fetchCodingProject={this.fetchCodingProject} />}
                 {importFrom === 'git' && <Git envs={envs} />}
             </div>
