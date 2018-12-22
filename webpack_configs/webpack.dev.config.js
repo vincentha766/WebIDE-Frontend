@@ -145,6 +145,8 @@ const config = merge(
       __NODE_ENV__: str(process.env.NODE_ENV || ''),
       __CHANGELOG_PATH__: str('/changelog/'),
       __CODING_URL__: str(process.env.CODING_URL || ''),
+      __LOGIN_URL__: str(process.env.LOGIN_URL || ''),
+      __LOGOUT_URL__: str(process.env.LOGOUT_URL || ''),
     }),
     new HardSourceWebpackPlugin()
   ]
