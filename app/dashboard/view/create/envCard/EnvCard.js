@@ -14,6 +14,7 @@ import php from './img/php.svg';
 import ruby from './img/ruby.svg';
 import share from './img/share.svg';
 import ubuntu from './img/ubuntu.svg';
+import r from './img/r.svg';
 
 const svgs = {
     'nodejs': nodejs,
@@ -28,6 +29,7 @@ const svgs = {
     'go': go,
     'c-cpp': c,
     'elixir': elixir,
+    'r': r,
 }
 
 const match = (label) => {
