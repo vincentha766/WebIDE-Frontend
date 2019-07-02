@@ -14,7 +14,7 @@ const divider = { isDivider: true };
 const menuBarItems = observable([
   {
     key: 'meta',
-    name: (<div className="menu-bar-item-logo"><img className="logo" src={window.serverConfig.BACKEND_URL+"/versions/logo"} alt="logo" /></div>),
+    name: (<div className="menu-bar-item-logo"><img className="logo" src={window.serverConfig.LOGO_URL} alt="logo" /></div>),
     weight: 0,
     className: 'coding-logo',
     items: [

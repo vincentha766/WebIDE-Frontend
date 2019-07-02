@@ -9,7 +9,9 @@ var serverConfig = {
   HDD_ADJUST_ENABLE: true,
   WS_REG: 'ws',
   STATIC_PATH: 'rs2',
-  WS_PATTERN: /^\/cs\/ws\/([^/]+)\/?$/
+  WS_PATTERN: /^\/cs\/ws\/([^/]+)\/?$/,
+  FAVICON_URL: "",
+  LOGO_URL: ""
 }
 
 if (typeof module !== 'undefined') {

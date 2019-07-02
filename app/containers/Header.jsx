@@ -115,7 +115,7 @@ class User extends Component {
 
 const Header = ({ handleSignout, userProfile }) => (
   <div className='page-header'>
-    <a href="/"><img href='/' className='logo' src={`${window.serverConfig.BACKEND_URL+"/versions/logo"}`}></img></a>
+    <a href="/"><img href='/' className='logo' src={window.serverConfig.LOGO_URL}></img></a>
     <ul className='nav'>
       {/* <li>
         <a href='/intro'>产品介绍</a>
