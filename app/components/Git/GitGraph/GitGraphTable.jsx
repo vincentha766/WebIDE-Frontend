@@ -11,6 +11,8 @@ import state from './state'
 import { CommitsCrawler, fetchCommits, fetchRefs } from './actions'
 import { getBranches } from '../actions'
 
+const PAGE_SIZE = 30
+
 const RefTag = ({ value: refName, backgroundColor, borderColor }) => {
   let ref
   const regex = /(refs\/\w+\/|HEAD)(.*)/
@@ -56,10 +58,7 @@ const RefTag = ({ value: refName, backgroundColor, borderColor }) => {
 class GitGraphTable extends Component {
   constructor (props) {
     super(props)
-    fetchRefs()
-    const PAGE_SIZE = 30
     this.onShow = this.onShow.bind(this)
-    fetchCommits({ size: PAGE_SIZE, page: 0 })
     this.state = {
       radius: 4,
       colWidth: 10,
@@ -68,14 +67,22 @@ class GitGraphTable extends Component {
       viewSize: 'small'
     }
 
+    this.fetchNewestCommits()
+
     this.crawler = new CommitsCrawler({
       commits: state.rawCommits,
       size: PAGE_SIZE
     })
   }
 
+  fetchNewestCommits() {
+    fetchRefs()
+    fetchCommits({ size: PAGE_SIZE, page: 0 })
+  }
+
   componentDidMount () {
     emitter.on(E.GITGRAPH_SHOW, this.onShow)
+    emitter.on(E.GITGRAPH_UPDATE, this.fetchNewestCommits)
   }
 
   componentWillUnmount () {

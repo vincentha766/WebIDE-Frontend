@@ -1,6 +1,6 @@
 import config from 'config'
 import api from 'backendAPI'
-import emitter, { FILE_CHANGE } from 'utils/emitter'
+import emitter, { FILE_CHANGE, GITGRAPH_UPDATE } from 'utils/emitter'
 import { autorun } from 'mobx'
 import { FsSocketClient } from 'backendAPI/websocketClients'
 import store, { getState, dispatch } from 'store'
@@ -40,6 +40,7 @@ function handleGitFiles (node) {
         FileActions.loadNodeData(result)
       })
     }
+    emitter.emit(GITGRAPH_UPDATE)
     return true
   }
   return false
