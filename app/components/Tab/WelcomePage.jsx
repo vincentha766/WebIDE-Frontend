@@ -41,7 +41,7 @@ class WelcomePage extends Component {
           </ul>
         </div> */}
         <div className='intro'>
-          <p>Cloud Studio 极大的降低了软件开发的门槛。即使您没有软件开发的经验，您也可以立即体验软件开发的魅力，毫无开发环境配置的繁琐。</p>
+          <p>Fii-iCloud WebIDE 极大的降低了软件开发的门槛。即使您没有软件开发的经验，您也可以立即体验软件开发的魅力，毫无开发环境配置的繁琐。</p>
           {/* <p>使用以下预置的应用程序模版快速开始吧：</p> */}
           {/* <ul className='demo-links'> */}
             {/* <li><a href='https://coding.net/help/doc/webide/online-editing.html' target='_blank' rel='noopener noreferrer'>HTML5 应用</a></li> */}

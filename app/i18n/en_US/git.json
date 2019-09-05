@@ -108,7 +108,7 @@
    "commitView": {
       "nnableToPreview": "Unable to preview",
       "nothingCommit": "Your working directory is clean. Nothing to commit.",
-      "initMessage": "Updated by Cloud Studio , https://studio.coding.net"
+      "initMessage": "Updated by Fii-iCloud WebIDE"
    },
    "unStash": {
       "branch": "Branch",
@@ -142,7 +142,7 @@
    },
    "resetRemote": {
      "title": "Reset the Remote",
-     "remoteAddress": "Please input Remote address"
+     "remoteAddress": "Please input Remote address(Only supports SSH protocol)"
    },
    "initPrompt": "The current project is not initialized Git, please execute git init in the terminal."
 }

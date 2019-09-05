@@ -108,7 +108,7 @@
    "commitView": {
       "nnableToPreview": "无法预览",
       "nothingCommit": "你的当前工作目录无内容提交",
-      "initMessage": "由 Cloud Studio 更新"
+      "initMessage": "由 Fii-iCloud WebIDE 更新"
    },
    "unStash": {
       "branch": "新建分支并应用",
@@ -142,7 +142,7 @@
    },
    "resetRemote": {
      "title": "重设远端",
-     "remoteAddress": "请输入远端地址"
+     "remoteAddress": "请输入远端地址（只支持 SSH 协议地址）"
    },
    "initPrompt": "当前项目未初始化 Git，请在终端中执行 git init"
 }
